@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhsssy.github.io/2020/03/19/hello-world/</loc>
+    
+    <lastmod>2020-03-24T07:21:33.611Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhsssy.github.io/2020/03/24/interface/</loc>
+    
+    <lastmod>2020-03-24T07:21:28.481Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhsssy.github.io/categories/index.html</loc>
     
     <lastmod>2020-03-20T05:31:34.824Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://zhsssy.github.io/tags/index.html</loc>
     
     <lastmod>2020-03-20T05:13:40.134Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhsssy.github.io/2020/03/19/hello-world/</loc>
-    
-    <lastmod>2020-03-19T07:53:23.790Z</lastmod>
     
   </url>
   
