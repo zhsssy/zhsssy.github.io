@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>tar安装软件</title>
+    <url>/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<ul>
+<li>打开一个SHELL，即终端<br>用cd 命令进入源代码压缩包所在的目录</li>
+<li>根据压缩包类型解压缩文件(*代表压缩包名称)<br>tar -xvzf .tar.gz || tar -jxvf .tar.bz(或bz2)</li>
+<li>用CD命令进入解压缩后的目录</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li>输入编译文件命令：./configure（有的压缩包已经编译过，这一步可以省去）<br>./configure –prefix=/opt 表示安装到/opt目录 。</li>
+<li>命令: make</li>
+<li>再是安装文件命令：make install</li>
+<li>执行“make clean”删除安装时产生的临时文件</li>
+<li>安装完毕</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pacman常用命令</title>
     <url>/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p>在 Archlinux 中，使用一条命令即可对整个系统进行更新：<br>pacman -Syu<br>如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su</p>

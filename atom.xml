@@ -6,10 +6,35 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhsssy.github.io/"/>
-  <updated>2020-05-31T01:57:54.220Z</updated>
+  <updated>2020-05-31T02:21:46.503Z</updated>
   <id>https://zhsssy.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tar安装软件</title>
+    <link href="https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/"/>
+    <id>https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</id>
+    <published>2020-05-31T02:12:44.000Z</published>
+    <updated>2020-05-31T02:21:46.503Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>打开一个SHELL，即终端<br>用cd 命令进入源代码压缩包所在的目录</li><li>根据压缩包类型解压缩文件(*代表压缩包名称)<br>tar -xvzf .tar.gz || tar -jxvf .tar.bz(或bz2)</li><li>用CD命令进入解压缩后的目录</li></ul><a id="more"></a><ul><li>输入编译文件命令：./configure（有的压缩包已经编译过，这一步可以省去）<br>./configure –prefix=/opt 表示安装到/opt目录 。</li><li>命令: make</li><li>再是安装文件命令：make install</li><li>执行“make clean”删除安装时产生的临时文件</li><li>安装完毕</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;打开一个SHELL，即终端&lt;br&gt;用cd 命令进入源代码压缩包所在的目录&lt;/li&gt;
+&lt;li&gt;根据压缩包类型解压缩文件(*代表压缩包名称)&lt;br&gt;tar -xvzf .tar.gz || tar -jxvf .tar.bz(或bz2)&lt;/li&gt;
+&lt;li&gt;用CD命令进入解压缩后的目录&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>pacman常用命令</title>
