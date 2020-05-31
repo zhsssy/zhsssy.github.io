@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>pacman常用命令</title>
+    <url>/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p>在 Archlinux 中，使用一条命令即可对整个系统进行更新：<br>pacman -Syu<br>如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su</p>
+<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p>➔ pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，<br>只需以空格分隔包名即可。<br>➔ pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。<br>➔ pacman -Sv 包名：在显示一些操作信息后执行安装。<br>➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。<br>➔ pacman -U <a href="http://www.example.com/repo/example.pkg.tar.xz" target="_blank" rel="noopener">http://www.example.com/repo/example.pkg.tar.xz</a> 安装一个远程包（不在 pacman 配置的源里面）</p>
+<a id="more"></a>显示在这里<!--more-->
+<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><p>➔ pacman -R 包名：该命令将只删除包，保留其全部已经安装的依赖关系<br>➔ pacman -Rs 包名：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系<br>➔ pacman -Rsc 包名：在删除包的同时，删除所有依赖这个软件包的程序<br>➔ pacman -Rd 包名：在删除包时不检查依赖。</p>
+<h2 id="搜索包"><a href="#搜索包" class="headerlink" title="搜索包"></a>搜索包</h2><p>➔ pacman -Ss 关键字：在仓库中搜索含关键字的包。<br>➔ pacman -Qs 关键字： 搜索已安装的包。<br>➔ pacman -Qi 包名：查看有关包的详尽信息。<br>➔ pacman -Ql 包名：列出该包的文件。</p>
+<h2 id="其他用法"><a href="#其他用法" class="headerlink" title="其他用法"></a>其他用法</h2><p>➔ pacman -Sw 包名：只下载包，不安装。<br>➔ pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。<br>➔ pacman -Scc：清理所有的缓存文件。</p>
+]]></content>
+      <tags>
+        <tag>archlinux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>interface</title>
-    <url>/2020/03/24/interface/</url>
-    <content><![CDATA[<h5 id="interface-是一种具有一组方法的类型"><a href="#interface-是一种具有一组方法的类型" class="headerlink" title="interface 是一种具有一组方法的类型"></a>interface 是一种<strong>具有一组方法的类型</strong></h5><h3 id="接口变量允许储存任何值"><a href="#接口变量允许储存任何值" class="headerlink" title="接口变量允许储存任何值"></a>接口变量允许储存任何值</h3><h4 id="go允许空接口"><a href="#go允许空接口" class="headerlink" title="go允许空接口"></a>go允许空接口</h4><ul>
+    <url>/2020/05/31/interface/</url>
+    <content><![CDATA[<h3 id="interface-是一种具有一组方法的类型"><a href="#interface-是一种具有一组方法的类型" class="headerlink" title="interface 是一种具有一组方法的类型"></a>interface 是一种<strong>具有一组方法的类型</strong></h3><h3 id="接口变量允许储存任何值"><a href="#接口变量允许储存任何值" class="headerlink" title="接口变量允许储存任何值"></a>接口变量允许储存任何值</h3><h3 id="go允许空接口"><a href="#go允许空接口" class="headerlink" title="go允许空接口"></a>go允许空接口</h3><ul>
 <li><p>duck typing    一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由”当前方法和属性的集合”决定 </p>
 </li>
 <li><p>在类型转换过程中，由于类型信息不会改变，直接通过拷贝指针赋值，而具体的值则根据原始类型的大小，复制一份新的内容。 </p>
 </li>
 </ul>
+<a id="more"></a>显示到这里<!--more--> 
+
 <ul>
 <li>源码 eface   无方法</li>
 </ul>
@@ -21,8 +37,7 @@
 
 
 
-<p>interface和nil</p>
-<p> 一个interface{}类型的变量包含了2个指针，一个指针指向值的类型，另外一个指针指向实际的值</p>
+<h3 id="interface和nil"><a href="#interface和nil" class="headerlink" title="interface和nil"></a>interface和nil</h3><p> 一个interface{}类型的变量包含了2个指针，一个指针指向值的类型，另外一个指针指向实际的值</p>
 ]]></content>
       <tags>
         <tag>golang</tag>
