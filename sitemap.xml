@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>https://zhsssy.github.io/2020/06/06/go-micro(1)/</loc>
     
-    <lastmod>2020-05-31T02:21:46.503Z</lastmod>
+    <lastmod>2020-06-07T02:37:12.406Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zhsssy.github.io/2020/05/31/interface/</loc>
+    <loc>https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</loc>
     
-    <lastmod>2020-05-31T01:59:09.699Z</lastmod>
+    <lastmod>2020-05-31T02:21:46.503Z</lastmod>
     
   </url>
   
@@ -33,6 +33,13 @@
     <loc>https://zhsssy.github.io/tags/index.html</loc>
     
     <lastmod>2020-03-20T05:13:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhsssy.github.io/2020/03/19/interface/</loc>
+    
+    <lastmod>2020-03-19T06:00:00.000Z</lastmod>
     
   </url>
   
