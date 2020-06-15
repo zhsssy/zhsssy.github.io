@@ -6,10 +6,38 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhsssy.github.io/"/>
-  <updated>2020-06-07T01:51:26.000Z</updated>
+  <updated>2020-06-15T04:29:12.000Z</updated>
   <id>https://zhsssy.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux中的swap</title>
+    <link href="https://zhsssy.github.io/2020/06/15/swapfile/"/>
+    <id>https://zhsssy.github.io/2020/06/15/swapfile/</id>
+    <published>2020-06-15T04:29:12.000Z</published>
+    <updated>2020-06-15T04:29:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在arch的使用过程中发现swap交换分区挂载失败，查询后发现可以通过交换文件进行挂载起到交换空间的效果。</p><h3 id="检查交换空间状态"><a href="#检查交换空间状态" class="headerlink" title="检查交换空间状态"></a>检查交换空间状态</h3><p>$ swapon -s</p><p>或 $ free -m</p><h3 id="使用交换文件的方式"><a href="#使用交换文件的方式" class="headerlink" title="使用交换文件的方式"></a>使用交换文件的方式</h3><ul><li>相比磁盘分区，交换文件更方便于随时调整大小或删除。</li></ul><a id="more"></a><h4 id="手动方式"><a href="#手动方式" class="headerlink" title="手动方式"></a>手动方式</h4><p>用root权限，使用fallocate方式创建swapfile，创建512m的文件大小如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fallocate -l 512M /swapfile</span><br></pre></td></tr></table></figure><p>但在实际操作工程中，使用<strong>fallocate</strong>命令使我在后面的启动时遇到错误，</p><p>解决方法： <em>fallocate</em> 命令用在 <a href="https://wiki.archlinux.org/index.php/F2FS" target="_blank" rel="noopener">F2FS</a> 或 <a href="https://wiki.archlinux.org/index.php/XFS" target="_blank" rel="noopener">XFS</a> 文件系统时可能会引起问题。<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1129205#c3" target="_blank" rel="noopener">[1]</a> 代替方式是使用 <em>dd</em> 命令，但是要慢一点:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=1M count=512</span><br></pre></td></tr></table></figure><p>为交换文件设置权限：（交换文件全局可读是一个巨大的本地漏洞）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 /swapfile</span><br></pre></td></tr></table></figure><p>创建后格式化</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap /swapfile</span><br></pre></td></tr></table></figure><p>启用文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /swapfile</span><br></pre></td></tr></table></figure><p>最后，编辑 <code>/etc/fstab</code>， 在其中添加如下的一行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/swapfile none swap defaults 0 0</span><br></pre></td></tr></table></figure><h3 id="如果要修改或删除交换文件"><a href="#如果要修改或删除交换文件" class="headerlink" title="如果要修改或删除交换文件"></a>如果要修改或删除交换文件</h3><h4 id="先停用他"><a href="#先停用他" class="headerlink" title="先停用他"></a>先停用他</h4><p>在root权限下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure><p>删除：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /swapfile</span><br></pre></td></tr></table></figure><p>最后删除/etc/fstab中相关项</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在arch的使用过程中发现swap交换分区挂载失败，查询后发现可以通过交换文件进行挂载起到交换空间的效果。&lt;/p&gt;
+&lt;h3 id=&quot;检查交换空间状态&quot;&gt;&lt;a href=&quot;#检查交换空间状态&quot; class=&quot;headerlink&quot; title=&quot;检查交换空间状态&quot;&gt;&lt;/a&gt;检查交换空间状态&lt;/h3&gt;&lt;p&gt;$ swapon -s&lt;/p&gt;
+&lt;p&gt;或 $ free -m&lt;/p&gt;
+&lt;h3 id=&quot;使用交换文件的方式&quot;&gt;&lt;a href=&quot;#使用交换文件的方式&quot; class=&quot;headerlink&quot; title=&quot;使用交换文件的方式&quot;&gt;&lt;/a&gt;使用交换文件的方式&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;相比磁盘分区，交换文件更方便于随时调整大小或删除。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="archlinux" scheme="https://zhsssy.github.io/tags/archlinux/"/>
+    
+      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>go-micro(1)</title>
