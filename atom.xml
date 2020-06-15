@@ -75,7 +75,7 @@
     <link href="https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/"/>
     <id>https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</id>
     <published>2020-05-31T02:12:44.000Z</published>
-    <updated>2020-05-31T02:21:46.503Z</updated>
+    <updated>2020-05-31T02:12:44.000Z</updated>
     
     <content type="html"><![CDATA[<ul><li>打开一个SHELL，即终端<br>用cd 命令进入源代码压缩包所在的目录</li><li>根据压缩包类型解压缩文件(*代表压缩包名称)<br>tar -xvzf .tar.gz || tar -jxvf .tar.bz(或bz2)</li><li>用CD命令进入解压缩后的目录</li></ul><a id="more"></a><ul><li>输入编译文件命令：./configure（有的压缩包已经编译过，这一步可以省去）<br>./configure –prefix=/opt 表示安装到/opt目录 。</li><li>命令: make</li><li>再是安装文件命令：make install</li><li>执行“make clean”删除安装时产生的临时文件</li><li>安装完毕</li></ul>]]></content>
     
@@ -100,7 +100,7 @@
     <link href="https://zhsssy.github.io/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>https://zhsssy.github.io/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
     <published>2020-05-31T01:51:56.000Z</published>
-    <updated>2020-05-31T01:57:54.220Z</updated>
+    <updated>2020-05-31T01:51:56.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p>在 Archlinux 中，使用一条命令即可对整个系统进行更新：<br>pacman -Syu<br>如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su</p><h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p>➔ pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，<br>只需以空格分隔包名即可。<br>➔ pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。<br>➔ pacman -Sv 包名：在显示一些操作信息后执行安装。<br>➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。<br>➔ pacman -U <a href="http://www.example.com/repo/example.pkg.tar.xz" target="_blank" rel="noopener">http://www.example.com/repo/example.pkg.tar.xz</a> 安装一个远程包（不在 pacman 配置的源里面）</p><a id="more"></a>显示在这里<!--more--><h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><p>➔ pacman -R 包名：该命令将只删除包，保留其全部已经安装的依赖关系<br>➔ pacman -Rs 包名：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系<br>➔ pacman -Rsc 包名：在删除包的同时，删除所有依赖这个软件包的程序<br>➔ pacman -Rd 包名：在删除包时不检查依赖。</p><h2 id="搜索包"><a href="#搜索包" class="headerlink" title="搜索包"></a>搜索包</h2><p>➔ pacman -Ss 关键字：在仓库中搜索含关键字的包。<br>➔ pacman -Qs 关键字： 搜索已安装的包。<br>➔ pacman -Qi 包名：查看有关包的详尽信息。<br>➔ pacman -Ql 包名：列出该包的文件。</p><h2 id="其他用法"><a href="#其他用法" class="headerlink" title="其他用法"></a>其他用法</h2><p>➔ pacman -Sw 包名：只下载包，不安装。<br>➔ pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。<br>➔ pacman -Scc：清理所有的缓存文件。</p>]]></content>
     

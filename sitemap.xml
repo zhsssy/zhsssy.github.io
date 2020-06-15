@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhsssy.github.io/about/index.html</loc>
+    
+    <lastmod>2020-06-15T05:46:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhsssy.github.io/2020/06/15/swapfile/</loc>
     
     <lastmod>2020-06-15T04:29:12.000Z</lastmod>
@@ -18,28 +25,28 @@
   <url>
     <loc>https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</loc>
     
-    <lastmod>2020-05-31T02:21:46.503Z</lastmod>
+    <lastmod>2020-05-31T02:12:44.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zhsssy.github.io/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
     
-    <lastmod>2020-05-31T01:57:54.220Z</lastmod>
+    <lastmod>2020-05-31T01:51:56.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zhsssy.github.io/categories/index.html</loc>
     
-    <lastmod>2020-03-20T05:31:34.000Z</lastmod>
+    <lastmod>2020-03-20T05:31:14.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zhsssy.github.io/tags/index.html</loc>
     
-    <lastmod>2020-03-20T05:13:40.000Z</lastmod>
+    <lastmod>2020-03-20T05:13:20.000Z</lastmod>
     
   </url>
   
