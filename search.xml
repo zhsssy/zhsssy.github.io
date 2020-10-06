@@ -9,6 +9,8 @@ error: please load the kernel first</code></pre>
 
 <p><del>重装系统</del></p>
 <p>使用LiveCD修复</p>
+<a id="more"></a>
+
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul>
 <li>进入arch liveCD</li>
 <li>联网</li>
@@ -23,6 +25,7 @@ sudo pacman -Syyuu linux</code></pre>
 grub-install --recheck /dev/sda(efi文件所在)</code></pre>
 
 <p>如果是efi引导，这一步如果前面未挂载efi文件则会失败</p>
+<h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>exit退出arch-chroot重启即可正常进入系统</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p>
 <pre><code class="hljs bash">error:invalid magic number
 error:please load kernel first</code></pre>
@@ -34,7 +37,7 @@ error:please load kernel first</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>linux中的swap</title>
+    <title>Linux swap交换分区</title>
     <url>/2020/06/15/swapfile/</url>
     <content><![CDATA[<p>在arch的使用过程中发现swap交换分区挂载失败，查询后发现可以通过交换文件进行挂载起到交换空间的效果。</p>
 <h3 id="检查交换空间状态"><a href="#检查交换空间状态" class="headerlink" title="检查交换空间状态"></a>检查交换空间状态</h3><p>$ swapon -s</p>
@@ -119,7 +122,7 @@ error:please load kernel first</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>tar安装软件</title>
+    <title>linux中安装.tar包</title>
     <url>/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</url>
     <content><![CDATA[<ul>
 <li>打开一个SHELL，即终端<br>用cd 命令进入源代码压缩包所在的目录</li>
@@ -155,7 +158,7 @@ error:please load kernel first</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>go语言中的interface</title>
+    <title>golang中的interface</title>
     <url>/2020/03/19/interface/</url>
     <content><![CDATA[<h1 id="interface-是一种类型"><a href="#interface-是一种类型" class="headerlink" title="interface 是一种类型"></a>interface 是一种<strong>类型</strong></h1><p><strong>interface 是一种类型</strong>，从它的定义可以看出来用了 type 关键字，更准确的说 interface 是一种<strong>具有一组方法的类型</strong>。</p>
 <p><strong>如果一个类型实现了一个 interface 中所有方法，我们说类型实现了该 interface</strong>，所以所有类型都实现了 empty interface，因为任何一种类型至少实现了 0 个方法。go 没有显式的关键字用来实现 interface，只需要实现 interface 包含的方法即可。</p>

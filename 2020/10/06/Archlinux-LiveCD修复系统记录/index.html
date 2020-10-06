@@ -152,7 +152,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      199 字
+      215 字
     </span>
   
 
@@ -199,6 +199,8 @@ error: please load the kernel first</code></pre>
 
 <p><del>重装系统</del></p>
 <p>使用LiveCD修复</p>
+<a id="more"></a>
+
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul>
 <li>进入arch liveCD</li>
 <li>联网</li>
@@ -213,6 +215,7 @@ sudo pacman -Syyuu linux</code></pre>
 grub-install --recheck /dev/sda(efi文件所在)</code></pre>
 
 <p>如果是efi引导，这一步如果前面未挂载efi文件则会失败</p>
+<h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>exit退出arch-chroot重启即可正常进入系统</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p>
 <pre><code class="hljs bash">error:invalid magic number
 error:please load kernel first</code></pre>
@@ -246,7 +249,7 @@ error:please load kernel first</code></pre>
                     
                     
                       <a href="/2020/06/15/swapfile/">
-                        <span class="hidden-mobile">linux中的swap</span>
+                        <span class="hidden-mobile">Linux swap交换分区</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
