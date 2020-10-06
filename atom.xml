@@ -6,10 +6,35 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhsssy.github.io/"/>
-  <updated>2020-06-15T04:29:12.000Z</updated>
+  <updated>2020-10-06T05:12:47.000Z</updated>
   <id>https://zhsssy.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Archlinux-LiveCD修复系统记录</title>
+    <link href="https://zhsssy.github.io/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/"/>
+    <id>https://zhsssy.github.io/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/</id>
+    <published>2020-10-06T05:12:47.000Z</published>
+    <updated>2020-10-06T05:12:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现进不去系统内核</p><pre><code class="hljs bash">error: invalid cluster 0error: please load the kernel first</code></pre><p><del>重装系统</del></p><p>使用LiveCD修复</p><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul><li>进入arch liveCD</li><li>联网</li><li>挂载原系统文件/dev/sda(固态为nvme) 到 (例如/mnt</li><li>挂载efi文件到(/mnt/boot/efi</li></ul><h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><pre><code class="hljs bash">arch-chroot /mntsudo pacman -Syyuu linux</code></pre><h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfggrub-install --recheck /dev/sda(efi文件所在)</code></pre><p>如果是efi引导，这一步如果前面未挂载efi文件则会失败</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p><pre><code class="hljs bash">error:invalid magic numbererror:please load kernel first</code></pre><p>之后又查阅了不少信息，通过重新生成grub文件的方式解决</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;为啥写这个？&quot;&gt;&lt;a href=&quot;#为啥写这个？&quot; class=&quot;headerlink&quot; title=&quot;为啥写这个？&quot;&gt;&lt;/a&gt;为啥写这个？&lt;/h2&gt;&lt;p&gt;某次更新后重启发现进不去系统内核&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;erro
+      
+    
+    </summary>
+    
+    
+    
+      <category term="archlinux" scheme="https://zhsssy.github.io/tags/archlinux/"/>
+    
+  </entry>
   
   <entry>
     <title>linux中的swap</title>
@@ -33,9 +58,9 @@
     
     
     
-      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
-    
       <category term="archlinux" scheme="https://zhsssy.github.io/tags/archlinux/"/>
+    
+      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
     
   </entry>
   

@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Archlinux-LiveCD修复系统记录</title>
+    <url>/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现进不去系统内核</p>
+<pre><code class="hljs bash">error: invalid cluster 0
+error: please load the kernel first</code></pre>
+
+<p><del>重装系统</del></p>
+<p>使用LiveCD修复</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul>
+<li>进入arch liveCD</li>
+<li>联网</li>
+<li>挂载原系统文件/dev/sda(固态为nvme) 到 (例如/mnt</li>
+<li>挂载efi文件到(/mnt/boot/efi</li>
+</ul>
+<h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><pre><code class="hljs bash">arch-chroot /mnt
+sudo pacman -Syyuu linux</code></pre>
+
+
+<h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --recheck /dev/sda(efi文件所在)</code></pre>
+
+<p>如果是efi引导，这一步如果前面未挂载efi文件则会失败</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p>
+<pre><code class="hljs bash">error:invalid magic number
+error:please load kernel first</code></pre>
+
+<p>之后又查阅了不少信息，通过重新生成grub文件的方式解决</p>
+]]></content>
+      <tags>
+        <tag>archlinux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux中的swap</title>
     <url>/2020/06/15/swapfile/</url>
     <content><![CDATA[<p>在arch的使用过程中发现swap交换分区挂载失败，查询后发现可以通过交换文件进行挂载起到交换空间的效果。</p>
@@ -39,8 +72,8 @@
 <p>最后删除/etc/fstab中相关项</p>
 ]]></content>
       <tags>
-        <tag>linux</tag>
         <tag>archlinux</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>

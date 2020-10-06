@@ -17,10 +17,19 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="keywords" content="">
-  <title>归档 - zhsssy的博客</title>
+  <title>Archlinux-LiveCD修复系统记录 - zhsssy的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +52,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -119,7 +128,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/banner.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -127,6 +136,40 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-10-06 13:12">
+      2020年10月6日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      199 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -139,67 +182,107 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现进不去系统内核</p>
+<pre><code class="hljs bash">error: invalid cluster 0
+error: please load the kernel first</code></pre>
+
+<p><del>重装系统</del></p>
+<p>使用LiveCD修复</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul>
+<li>进入arch liveCD</li>
+<li>联网</li>
+<li>挂载原系统文件/dev/sda(固态为nvme) 到 (例如/mnt</li>
+<li>挂载efi文件到(/mnt/boot/efi</li>
+</ul>
+<h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><pre><code class="hljs bash">arch-chroot /mnt
+sudo pacman -Syyuu linux</code></pre>
+
+
+<h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --recheck /dev/sda(efi文件所在)</code></pre>
+
+<p>如果是efi引导，这一步如果前面未挂载efi文件则会失败</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p>
+<pre><code class="hljs bash">error:invalid magic number
+error:please load kernel first</code></pre>
+
+<p>之后又查阅了不少信息，通过重新生成grub文件的方式解决</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/archlinux/">archlinux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/15/swapfile/">
+                        <span class="hidden-mobile">linux中的swap</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
                 
 
-<div class="list-group">
-  <p class="h4">共计 6 篇文章</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Archlinux-LiveCD修复系统记录</span>
-      <span style="float: right;">10-06</span>
-    </a>
-  
-    
-    <a href="/2020/06/15/swapfile/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">linux中的swap</span>
-      <span style="float: right;">06-15</span>
-    </a>
-  
-    
-    <a href="/2020/06/06/go-micro(1)/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">go-micro(1)</span>
-      <span style="float: right;">06-06</span>
-    </a>
-  
-    
-    <a href="/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">tar安装软件</span>
-      <span style="float: right;">05-31</span>
-    </a>
-  
-    
-    <a href="/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">pacman常用命令</span>
-      <span style="float: right;">05-31</span>
-    </a>
-  
-    
-    <a href="/2020/03/19/interface/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">go语言中的interface</span>
-      <span style="float: right;">03-19</span>
-    </a>
-  
-</div>
-
-
-
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -344,6 +427,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -351,7 +459,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Archlinux-LiveCD修复系统记录&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -366,6 +474,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -379,6 +502,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
