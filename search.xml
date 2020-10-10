@@ -3,7 +3,7 @@
   <entry>
     <title>Archlinux-LiveCD修复系统记录</title>
     <url>/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现进不去系统内核</p>
+    <content><![CDATA[<h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现系统内核未加载</p>
 <pre><code class="hljs bash">error: invalid cluster 0
 error: please load the kernel first</code></pre>
 
@@ -24,7 +24,7 @@ sudo pacman -Syyuu linux</code></pre>
 <h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg
 grub-install --recheck /dev/sda(efi文件所在)</code></pre>
 
-<p>如果是efi引导，这一步如果前面未挂载efi文件则会失败</p>
+<p>如果是UEFI引导，这一步如果前面未挂载efi文件则会失败</p>
 <h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>exit退出arch-chroot重启即可正常进入系统</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p>
 <pre><code class="hljs bash">error:invalid magic number
