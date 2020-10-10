@@ -6,10 +6,31 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhsssy.github.io/"/>
-  <updated>2020-10-06T05:12:47.000Z</updated>
+  <updated>2020-10-10T02:33:25.000Z</updated>
   <id>https://zhsssy.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Arch切换lts内核</title>
+    <link href="https://zhsssy.github.io/2020/10/10/arch%E5%88%87%E6%8D%A2lts%E5%86%85%E6%A0%B8/"/>
+    <id>https://zhsssy.github.io/2020/10/10/arch%E5%88%87%E6%8D%A2lts%E5%86%85%E6%A0%B8/</id>
+    <published>2020-10-10T02:33:25.000Z</published>
+    <updated>2020-10-10T02:33:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于更新导致的滚挂之后，想配置一个更加稳定的系统。萌生了切换内核的想法。</p><a id="more"></a><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><pre><code class="hljs bash">sudo pacman -S linux-lts linux-lts-headerssudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre><p>执行之后重启之后以lts内核进入系统</p><p>使用lts内核相比普通内核提高了arch的稳定性，降低了滚挂的概率。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;由于更新导致的滚挂之后，想配置一个更加稳定的系统。萌生了切换内核的想法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Archlinux" scheme="https://zhsssy.github.io/tags/Archlinux/"/>
+    
+  </entry>
   
   <entry>
     <title>Archlinux-LiveCD修复系统记录</title>
