@@ -201,7 +201,7 @@
 
 <h2 id="duck-typing"><a href="#duck-typing" class="headerlink" title="duck typing "></a><a href="https://en.wikipedia.org/wiki/Duck_typing" target="_blank" rel="noopener">duck typing </a></h2><p>一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由”当前方法和属性的集合”决定 。</p>
 <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>在类型转换过程中，由于类型信息不会改变，直接通过拷贝指针赋值，而具体的值则根据原始类型的大小，复制一份新的内容。 </p>
-<h3 id="源码-eface"><a href="#源码-eface" class="headerlink" title="源码 eface"></a>源码 eface</h3><pre><code class="hljs go"><span class="hljs-keyword">type</span> eface <span class="hljs-keyword">struct</span> &#123;
+<h3 id="源码-eface"><a href="#源码-eface" class="headerlink" title="源码 eface"></a>源码 eface</h3><div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">type</span> eface <span class="hljs-keyword">struct</span> &#123;
 	_type *_type   <span class="hljs-comment">//_type是对一种具体类型的描述,例如int,string</span>
 	data  unsafe.Pointer   <span class="hljs-comment">//指向真实数据的指针</span>
 &#125;
@@ -224,9 +224,9 @@
 	gcdata    *<span class="hljs-keyword">byte</span>
 	str       nameOff <span class="hljs-comment">//string form</span>
 	ptrToThis typeOff <span class="hljs-comment">// type for pointer to this type, may be zero</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h3 id="源码iface-有方法"><a href="#源码iface-有方法" class="headerlink" title="源码iface      有方法"></a>源码iface      有方法</h3><pre><code class="hljs go"><span class="hljs-keyword">type</span> iface <span class="hljs-keyword">struct</span> &#123;
+<h3 id="源码iface-有方法"><a href="#源码iface-有方法" class="headerlink" title="源码iface      有方法"></a>源码iface      有方法</h3><div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">type</span> iface <span class="hljs-keyword">struct</span> &#123;
 	tab  *itab   <span class="hljs-comment">//复杂，既有数据又有方法</span>
 	data unsafe.Pointer
 &#125;
@@ -255,7 +255,7 @@
 <span class="hljs-keyword">type</span> imethod <span class="hljs-keyword">struct</span> &#123;
 	name nameOff
 	ityp typeOff
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h1 id="interface和nil"><a href="#interface和nil" class="headerlink" title="interface和nil"></a>interface和nil</h1><p> 一个interface{}类型的变量包含了2个指针，一个指针指向值的类型，另外一个指针指向实际的值</p>
 

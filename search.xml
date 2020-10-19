@@ -6,8 +6,8 @@
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于更新导致的滚挂之后，想配置一个更加稳定的系统。萌生了切换内核的想法。</p>
 <a id="more"></a>
 
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><pre><code class="hljs bash">sudo pacman -S linux-lts linux-lts-headers
-sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><div class="hljs"><pre><code class="hljs bash">sudo pacman -S linux-lts linux-lts-headers
+sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre></div>
 
 <p>执行之后重启之后以lts内核进入系统</p>
 <p>使用lts内核相比普通内核提高了arch的稳定性，降低了滚挂的概率。</p>
@@ -20,8 +20,8 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
     <title>Archlinux-LiveCD修复系统记录</title>
     <url>/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现系统内核未加载</p>
-<pre><code class="hljs bash">error: invalid cluster 0
-error: please load the kernel first</code></pre>
+<div class="hljs"><pre><code class="hljs bash">error: invalid cluster 0
+error: please load the kernel first</code></pre></div>
 
 <p><del>重装系统</del></p>
 <p>使用LiveCD修复</p>
@@ -33,18 +33,18 @@ error: please load the kernel first</code></pre>
 <li>挂载原系统文件/dev/sda(固态为nvme) 到 (例如/mnt</li>
 <li>挂载efi文件到(/mnt/boot/efi</li>
 </ul>
-<h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><pre><code class="hljs bash">arch-chroot /mnt
-sudo pacman -Syyuu linux</code></pre>
+<h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><div class="hljs"><pre><code class="hljs bash">arch-chroot /mnt
+sudo pacman -Syyuu linux</code></pre></div>
 
 
-<h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg
-grub-install --recheck /dev/sda(efi文件所在)</code></pre>
+<h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><div class="hljs"><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg
+grub-install --recheck /dev/sda(efi文件所在)</code></pre></div>
 
 <p>如果是UEFI引导，这一步如果前面未挂载efi文件则会失败</p>
 <h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>exit退出arch-chroot重启即可正常进入系统</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p>
-<pre><code class="hljs bash">error:invalid magic number
-error:please load kernel first</code></pre>
+<div class="hljs"><pre><code class="hljs bash">error:invalid magic number
+error:please load kernel first</code></pre></div>
 
 <p>之后又查阅了不少信息，通过重新生成grub文件的方式解决</p>
 ]]></content>
@@ -64,29 +64,29 @@ error:please load kernel first</code></pre>
 <a id="more"></a>
 
 <h4 id="手动方式"><a href="#手动方式" class="headerlink" title="手动方式"></a>手动方式</h4><p>用root权限，使用fallocate方式创建swapfile，创建512m的文件大小如下：</p>
-<pre><code class="hljs bash">fallocate -l 512M /swapfile</code></pre>
+<div class="hljs"><pre><code class="hljs bash">fallocate -l 512M /swapfile</code></pre></div>
 
 <p>但在实际操作工程中，使用<strong>fallocate</strong>命令使我在后面的启动时遇到错误，</p>
 <p>解决方法： <em>fallocate</em> 命令用在 <a href="https://wiki.archlinux.org/index.php/F2FS" target="_blank" rel="noopener">F2FS</a> 或 <a href="https://wiki.archlinux.org/index.php/XFS" target="_blank" rel="noopener">XFS</a> 文件系统时可能会引起问题。<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1129205#c3" target="_blank" rel="noopener">[1]</a> 代替方式是使用 <em>dd</em> 命令，但是要慢一点:</p>
-<pre><code class="hljs bash">dd <span class="hljs-keyword">if</span>=/dev/zero of=/swapfile bs=1M count=512</code></pre>
+<div class="hljs"><pre><code class="hljs bash">dd <span class="hljs-keyword">if</span>=/dev/zero of=/swapfile bs=1M count=512</code></pre></div>
 
 <p>为交换文件设置权限：（交换文件全局可读是一个巨大的本地漏洞）</p>
-<pre><code class="hljs bash">chmod 600 /swapfile</code></pre>
+<div class="hljs"><pre><code class="hljs bash">chmod 600 /swapfile</code></pre></div>
 
 <p>创建后格式化</p>
-<pre><code class="hljs bash">mkswap /swapfile</code></pre>
+<div class="hljs"><pre><code class="hljs bash">mkswap /swapfile</code></pre></div>
 
 <p>启用文件</p>
-<pre><code class="hljs bash">swapon /swapfile</code></pre>
+<div class="hljs"><pre><code class="hljs bash">swapon /swapfile</code></pre></div>
 
 <p>最后，编辑 <code>/etc/fstab</code>， 在其中添加如下的一行：</p>
-<pre><code class="hljs bash">/swapfile none swap defaults 0 0</code></pre>
+<div class="hljs"><pre><code class="hljs bash">/swapfile none swap defaults 0 0</code></pre></div>
 
 <h3 id="如果要修改或删除交换文件"><a href="#如果要修改或删除交换文件" class="headerlink" title="如果要修改或删除交换文件"></a>如果要修改或删除交换文件</h3><h4 id="先停用他"><a href="#先停用他" class="headerlink" title="先停用他"></a>先停用他</h4><p>在root权限下：</p>
-<pre><code class="hljs bash">swapoff -a</code></pre>
+<div class="hljs"><pre><code class="hljs bash">swapoff -a</code></pre></div>
 
 <p>删除：</p>
-<pre><code class="hljs bash">rm -rf /swapfile</code></pre>
+<div class="hljs"><pre><code class="hljs bash">rm -rf /swapfile</code></pre></div>
 
 <p>最后删除/etc/fstab中相关项</p>
 ]]></content>
@@ -184,7 +184,7 @@ error:please load kernel first</code></pre>
 
 <h2 id="duck-typing"><a href="#duck-typing" class="headerlink" title="duck typing "></a><a href="https://en.wikipedia.org/wiki/Duck_typing" target="_blank" rel="noopener">duck typing </a></h2><p>一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由”当前方法和属性的集合”决定 。</p>
 <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>在类型转换过程中，由于类型信息不会改变，直接通过拷贝指针赋值，而具体的值则根据原始类型的大小，复制一份新的内容。 </p>
-<h3 id="源码-eface"><a href="#源码-eface" class="headerlink" title="源码 eface"></a>源码 eface</h3><pre><code class="hljs go"><span class="hljs-keyword">type</span> eface <span class="hljs-keyword">struct</span> &#123;
+<h3 id="源码-eface"><a href="#源码-eface" class="headerlink" title="源码 eface"></a>源码 eface</h3><div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">type</span> eface <span class="hljs-keyword">struct</span> &#123;
 	_type *_type   <span class="hljs-comment">//_type是对一种具体类型的描述,例如int,string</span>
 	data  unsafe.Pointer   <span class="hljs-comment">//指向真实数据的指针</span>
 &#125;
@@ -207,9 +207,9 @@ error:please load kernel first</code></pre>
 	gcdata    *<span class="hljs-keyword">byte</span>
 	str       nameOff <span class="hljs-comment">//string form</span>
 	ptrToThis typeOff <span class="hljs-comment">// type for pointer to this type, may be zero</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h3 id="源码iface-有方法"><a href="#源码iface-有方法" class="headerlink" title="源码iface      有方法"></a>源码iface      有方法</h3><pre><code class="hljs go"><span class="hljs-keyword">type</span> iface <span class="hljs-keyword">struct</span> &#123;
+<h3 id="源码iface-有方法"><a href="#源码iface-有方法" class="headerlink" title="源码iface      有方法"></a>源码iface      有方法</h3><div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">type</span> iface <span class="hljs-keyword">struct</span> &#123;
 	tab  *itab   <span class="hljs-comment">//复杂，既有数据又有方法</span>
 	data unsafe.Pointer
 &#125;
@@ -238,7 +238,7 @@ error:please load kernel first</code></pre>
 <span class="hljs-keyword">type</span> imethod <span class="hljs-keyword">struct</span> &#123;
 	name nameOff
 	ityp typeOff
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h1 id="interface和nil"><a href="#interface和nil" class="headerlink" title="interface和nil"></a>interface和nil</h1><p> 一个interface{}类型的变量包含了2个指针，一个指针指向值的类型，另外一个指针指向实际的值</p>
 ]]></content>
