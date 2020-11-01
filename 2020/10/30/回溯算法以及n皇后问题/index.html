@@ -164,7 +164,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      29 字
+      585 字
     </span>
   
 
@@ -174,7 +174,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      10
        分钟
     </span>
   
@@ -205,11 +205,28 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="回溯以及n皇后问题"><a href="#回溯以及n皇后问题" class="headerlink" title="回溯以及n皇后问题"></a>回溯以及n皇后问题</h1><h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>  回溯算法</p>
-<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><div class="hljs"><pre><code class="hljs go">marked[i] = <span class="hljs-literal">true</span>
-dfs(path)
-marked[i] = <span class="hljs-literal">true</span></code></pre></div>
+              <h1 id="回溯算法以及n皇后问题"><a href="#回溯算法以及n皇后问题" class="headerlink" title="回溯算法以及n皇后问题"></a>回溯算法以及n皇后问题</h1><p><a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95" target="_blank" rel="noopener">回溯</a>，对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于<a href="https://zh.wikipedia.org/wiki/约束补偿问题" target="_blank" rel="noopener">约束补偿问题</a>（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
+<p>回溯法采用<a href="https://zh.wikipedia.org/wiki/试错" target="_blank" rel="noopener">试错</a>的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。回溯法通常用最简单的<a href="https://zh.wikipedia.org/wiki/递归" target="_blank" rel="noopener">递归</a>方法来实现，在反复重复上述的步骤后可能出现两种情况：</p>
+<ul>
+<li>找到一个可能存在的正确的答案</li>
+<li>在尝试了所有可能的分步方法后宣告该问题没有答案</li>
+</ul>
+<a id="more"></a>
 
+<h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>  不断的试错，直至搜寻到满足条件的解</p>
+<h2 id="八皇后问题"><a href="#八皇后问题" class="headerlink" title="八皇后问题"></a>八皇后问题</h2><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>在8×8格的<a href="https://baike.baidu.com/item/国际象棋/80888" target="_blank" rel="noopener">国际象棋</a>上摆放8个<a href="https://baike.baidu.com/item/皇后/15860305" target="_blank" rel="noopener">皇后</a>，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p>
+<p><img src="./nQueen.png" srcset="/img/loading.gif" alt=""></p>
+<h4 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h4><p>穷举法需要尝试88=16,777,216种情况。每一列放一个皇后，可以放在第 1 行，第 2 行，……，直到第8行。穷举的时候从所有皇后都放在第1行的方案开始，检验皇后之间是否会相互攻击。方法十分低效，重复做了许多不必要的计算。</p>
+<p>回溯算法用于解决此类问题效率较高。</p>
+<h4 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h4><div class="hljs"><pre><code class="hljs go"><span class="hljs-keyword">for</span> col:=<span class="hljs-number">0</span>;col&lt;<span class="hljs-built_in">len</span>(nums);col++&#123;
+    <span class="hljs-keyword">if</span> check(nums,row,col)&#123;
+        nums[row][col] = <span class="hljs-string">'Q'</span>
+        solve(res,nums,row+<span class="hljs-number">1</span>)
+        nums[row][col] = <span class="hljs-string">'.'</span>
+    &#125;
+&#125;</code></pre></div>
+
+<p>由八皇后问题可以推广至n个皇后的问题，作出决定后回溯减少运算，从而比传统的穷举法更加高效。</p>
 
             </article>
             <hr>
