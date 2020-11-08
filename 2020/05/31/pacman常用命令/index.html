@@ -204,6 +204,12 @@
         <div class="py-5" id="board">
           <div class="post-content mx-auto" id="post">
             
+              <p class="note note-info">
+                
+                  本文最后更新于：5 个月前
+                
+              </p>
+            
             <article class="markdown-body">
               <h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p>在 Archlinux 中，使用一条命令即可对整个系统进行更新：<br>pacman -Syu<br>如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su</p>
 <h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p>➔ pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，<br>只需以空格分隔包名即可。<br>➔ pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。<br>➔ pacman -Sv 包名：在显示一些操作信息后执行安装。<br>➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。<br>➔ pacman -U <a href="http://www.example.com/repo/example.pkg.tar.xz" target="_blank" rel="noopener">http://www.example.com/repo/example.pkg.tar.xz</a> 安装一个远程包（不在 pacman 配置的源里面）</p>
@@ -245,7 +251,7 @@
                     
                     
                       <a href="/2020/03/19/interface/">
-                        <span class="hidden-mobile">golang中的interface</span>
+                        <span class="hidden-mobile">Go interface</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -441,7 +447,7 @@
         listClass: 'tocbot-list',
         isCollapsedClass: 'tocbot-is-collapsed',
         collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
+        collapseDepth: 6,
         scrollSmooth: true,
         headingsOffset: -boardTop
       });

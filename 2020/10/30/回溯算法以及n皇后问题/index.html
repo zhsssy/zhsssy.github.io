@@ -204,6 +204,12 @@
         <div class="py-5" id="board">
           <div class="post-content mx-auto" id="post">
             
+              <p class="note note-info">
+                
+                  本文最后更新于：9 天前
+                
+              </p>
+            
             <article class="markdown-body">
               <h1 id="回溯算法以及n皇后问题"><a href="#回溯算法以及n皇后问题" class="headerlink" title="回溯算法以及n皇后问题"></a>回溯算法以及n皇后问题</h1><p><a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95" target="_blank" rel="noopener">回溯</a>，对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于<a href="https://zh.wikipedia.org/wiki/约束补偿问题" target="_blank" rel="noopener">约束补偿问题</a>（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
 <p>回溯法采用<a href="https://zh.wikipedia.org/wiki/试错" target="_blank" rel="noopener">试错</a>的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。回溯法通常用最简单的<a href="https://zh.wikipedia.org/wiki/递归" target="_blank" rel="noopener">递归</a>方法来实现，在反复重复上述的步骤后可能出现两种情况：</p>
@@ -255,7 +261,7 @@
                     
                     
                       <a href="/2020/10/10/arch%E5%88%87%E6%8D%A2lts%E5%86%85%E6%A0%B8/">
-                        <span class="hidden-mobile">Arch切换lts内核</span>
+                        <span class="hidden-mobile">Arch切换lts内核过程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -451,7 +457,7 @@
         listClass: 'tocbot-list',
         isCollapsedClass: 'tocbot-is-collapsed',
         collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
+        collapseDepth: 6,
         scrollSmooth: true,
         headingsOffset: -boardTop
       });
