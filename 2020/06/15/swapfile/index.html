@@ -237,29 +237,29 @@
 <a id="more"></a>
 
 <h4 id="手动方式"><a href="#手动方式" class="headerlink" title="手动方式"></a>手动方式</h4><p>用root权限，使用fallocate方式创建swapfile，创建512m的文件大小如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">fallocate -l 512M /swapfile<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">fallocate -l 512M /swapfile<br></code></pre></div></td></tr></table></figure>
 
 <p>但在实际操作工程中，使用<strong>fallocate</strong>命令使我在后面的启动时遇到错误，</p>
 <p>解决方法： <em>fallocate</em> 命令用在 <a href="https://wiki.archlinux.org/index.php/F2FS" target="_blank" rel="noopener">F2FS</a> 或 <a href="https://wiki.archlinux.org/index.php/XFS" target="_blank" rel="noopener">XFS</a> 文件系统时可能会引起问题。<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1129205#c3" target="_blank" rel="noopener">[1]</a> 代替方式是使用 <em>dd</em> 命令，但是要慢一点:</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">dd <span class="hljs-keyword">if</span>=/dev/zero of=/swapfile bs=1M count=512<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">dd <span class="hljs-keyword">if</span>=/dev/zero of=/swapfile bs=1M count=512<br></code></pre></div></td></tr></table></figure>
 
 <p>为交换文件设置权限：（交换文件全局可读是一个巨大的本地漏洞）</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">chmod 600 /swapfile<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">chmod 600 /swapfile<br></code></pre></div></td></tr></table></figure>
 
 <p>创建后格式化</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">mkswap /swapfile<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">mkswap /swapfile<br></code></pre></div></td></tr></table></figure>
 
 <p>启用文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">swapon /swapfile<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">swapon /swapfile<br></code></pre></div></td></tr></table></figure>
 
 <p>最后，编辑 <code>/etc/fstab</code>， 在其中添加如下的一行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/swapfile none swap defaults 0 0<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/swapfile none swap defaults 0 0<br></code></pre></div></td></tr></table></figure>
 
 <h3 id="如果要修改或删除交换文件"><a href="#如果要修改或删除交换文件" class="headerlink" title="如果要修改或删除交换文件"></a>如果要修改或删除交换文件</h3><h4 id="先停用他"><a href="#先停用他" class="headerlink" title="先停用他"></a>先停用他</h4><p>在root权限下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">swapoff -a<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">swapoff -a<br></code></pre></div></td></tr></table></figure>
 
 <p>删除：</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">rm -rf /swapfile<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">rm -rf /swapfile<br></code></pre></div></td></tr></table></figure>
 
 <p>最后删除/etc/fstab中相关项</p>
 
@@ -272,9 +272,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/archlinux/">archlinux</a>
-                    
                       <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/archlinux/">archlinux</a>
                     
                   </div>
                 
