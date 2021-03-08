@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>函数式编程中的范畴论</title>
+    <url>/2021/03/08/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E4%B8%AD%E7%9A%84%E8%8C%83%E7%95%B4%E8%AE%BA/</url>
+    <content><![CDATA[<p>待续 &nbsp;</p>
+<a id="more"></a>
+
+<p>参考</p>
+<blockquote>
+<p><a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/" target="_blank" rel="noopener">Category theory for Programmers</a></p>
+<p><a href="https://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html" target="_blank" rel="noopener">Functors,Applicatives,And Monads In Pictures</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>function programming</tag>
+        <tag>haskell</tag>
+        <tag>category theory</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>记录一次linux扩容</title>
     <url>/2021/03/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1linux%E6%89%A9%E5%AE%B9/</url>
     <content><![CDATA[<p>&nbsp;</p>
 <p>由于初期安装linux时,并未详细考虑使用情况的问题</p>
 <p>导致使用过程中逐渐发现linux的硬盘空间不够,遂萌生了扩容硬盘的想法</p>
+<a id="more"></a>
+
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h6 id="在windows的环境下"><a href="#在windows的环境下" class="headerlink" title="在windows的环境下"></a>在windows的环境下</h6><ul>
 <li>先使用<strong>磁盘工具</strong>分配未使用空间</li>
 </ul>
