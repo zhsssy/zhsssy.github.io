@@ -6,10 +6,37 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhsssy.github.io/"/>
-  <updated>2020-10-30T11:56:35.000Z</updated>
+  <updated>2021-03-08T14:17:04.000Z</updated>
   <id>https://zhsssy.github.io/</id>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记录一次linux扩容</title>
+    <link href="https://zhsssy.github.io/2021/03/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1linux%E6%89%A9%E5%AE%B9/"/>
+    <id>https://zhsssy.github.io/2021/03/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1linux%E6%89%A9%E5%AE%B9/</id>
+    <published>2021-03-08T14:17:04.000Z</published>
+    <updated>2021-03-08T14:17:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp;</p><p>由于初期安装linux时,并未详细考虑使用情况的问题</p><p>导致使用过程中逐渐发现linux的硬盘空间不够,遂萌生了扩容硬盘的想法</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h6 id="在windows的环境下"><a href="#在windows的环境下" class="headerlink" title="在windows的环境下"></a>在windows的环境下</h6><ul><li>先使用<strong>磁盘工具</strong>分配未使用空间</li></ul><h6 id="准备一个LiveCD"><a href="#准备一个LiveCD" class="headerlink" title="准备一个LiveCD"></a>准备一个LiveCD</h6><ul><li><p>带图形界面</p><ul><li>如果使用带图形界面的LiveCD,进入LiveCD后</li><li>直接通过gparted分区编辑器进行编辑</li><li>如果mount分区,通过gui工具umount之后进行重新分配即可扩容</li></ul></li><li><p>不带图形界面</p><p>使用parted工具进行分配,实现umount需要扩容的磁盘</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;由于初期安装linux时,并未详细考虑使用情况的问题&lt;/p&gt;
+&lt;p&gt;导致使用过程中逐渐发现linux的硬盘空间不够,遂萌生了扩容硬盘的想法&lt;/p&gt;
+&lt;h3 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; titl
+      
+    
+    </summary>
+    
+    
+    
+      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>回溯算法以及n皇后问题</title>

@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>记录一次linux扩容</title>
+    <url>/2021/03/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1linux%E6%89%A9%E5%AE%B9/</url>
+    <content><![CDATA[<p>&nbsp;</p>
+<p>由于初期安装linux时,并未详细考虑使用情况的问题</p>
+<p>导致使用过程中逐渐发现linux的硬盘空间不够,遂萌生了扩容硬盘的想法</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h6 id="在windows的环境下"><a href="#在windows的环境下" class="headerlink" title="在windows的环境下"></a>在windows的环境下</h6><ul>
+<li>先使用<strong>磁盘工具</strong>分配未使用空间</li>
+</ul>
+<h6 id="准备一个LiveCD"><a href="#准备一个LiveCD" class="headerlink" title="准备一个LiveCD"></a>准备一个LiveCD</h6><ul>
+<li><p>带图形界面</p>
+<ul>
+<li>如果使用带图形界面的LiveCD,进入LiveCD后</li>
+<li>直接通过gparted分区编辑器进行编辑</li>
+<li>如果mount分区,通过gui工具umount之后进行重新分配即可扩容</li>
+</ul>
+</li>
+<li><p>不带图形界面</p>
+<p>使用parted工具进行分配,实现umount需要扩容的磁盘</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>回溯算法以及n皇后问题</title>
     <url>/2020/10/30/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E4%BB%A5%E5%8F%8An%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="回溯算法以及n皇后问题-nbsp-nbsp-nbsp-nbsp"><a href="#回溯算法以及n皇后问题-nbsp-nbsp-nbsp-nbsp" class="headerlink" title="回溯算法以及n皇后问题 &nbsp; &nbsp; &nbsp; &nbsp;"></a>回溯算法以及n皇后问题 &nbsp; &nbsp; &nbsp; &nbsp;</h1><p><a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95" target="_blank" rel="noopener">回溯</a>，对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于<a href="https://zh.wikipedia.org/wiki/约束补偿问题" target="_blank" rel="noopener">约束补偿问题</a>（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p>
