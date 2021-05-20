@@ -28,134 +28,36 @@
     
     
     
+      <category term="category theory" scheme="https://zhsssy.github.io/tags/category-theory/"/>
+    
       <category term="function programming" scheme="https://zhsssy.github.io/tags/function-programming/"/>
     
       <category term="haskell" scheme="https://zhsssy.github.io/tags/haskell/"/>
     
-      <category term="category theory" scheme="https://zhsssy.github.io/tags/category-theory/"/>
-    
   </entry>
   
   <entry>
-    <title>记录一次linux扩容</title>
-    <link href="https://zhsssy.github.io/2021/03/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1linux%E6%89%A9%E5%AE%B9/"/>
-    <id>https://zhsssy.github.io/2021/03/08/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1linux%E6%89%A9%E5%AE%B9/</id>
-    <published>2021-03-08T14:17:04.000Z</published>
-    <updated>2021-03-08T14:17:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>&nbsp;</p><p>由于初期安装linux时,并未详细考虑使用情况的问题</p><p>导致使用过程中逐渐发现linux的硬盘空间不够,遂萌生了扩容硬盘的想法</p><a id="more"></a><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h6 id="在windows的环境下"><a href="#在windows的环境下" class="headerlink" title="在windows的环境下"></a>在windows的环境下</h6><ul><li>先使用<strong>磁盘工具</strong>分配未使用空间</li></ul><h6 id="准备一个LiveCD"><a href="#准备一个LiveCD" class="headerlink" title="准备一个LiveCD"></a>准备一个LiveCD</h6><ul><li><p>带图形界面</p><ul><li>如果使用带图形界面的LiveCD,进入LiveCD后</li><li>直接通过gparted分区编辑器进行编辑</li><li>如果mount分区,通过gui工具umount之后进行重新分配即可扩容</li></ul></li><li><p>不带图形界面</p><p>使用parted工具进行分配,实现umount需要扩容的磁盘</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;由于初期安装linux时,并未详细考虑使用情况的问题&lt;/p&gt;
-&lt;p&gt;导致使用过程中逐渐发现linux的硬盘空间不够,遂萌生了扩容硬盘的想法&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>回溯算法以及n皇后问题</title>
-    <link href="https://zhsssy.github.io/2020/10/30/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E4%BB%A5%E5%8F%8An%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/"/>
-    <id>https://zhsssy.github.io/2020/10/30/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E4%BB%A5%E5%8F%8An%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</id>
-    <published>2020-10-30T11:56:35.000Z</published>
-    <updated>2020-10-30T11:56:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="回溯算法以及n皇后问题-nbsp-nbsp-nbsp-nbsp"><a href="#回溯算法以及n皇后问题-nbsp-nbsp-nbsp-nbsp" class="headerlink" title="回溯算法以及n皇后问题 &nbsp; &nbsp; &nbsp; &nbsp;"></a>回溯算法以及n皇后问题 &nbsp; &nbsp; &nbsp; &nbsp;</h1><p><a href="https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95" target="_blank" rel="noopener">回溯</a>，对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于<a href="https://zh.wikipedia.org/wiki/约束补偿问题" target="_blank" rel="noopener">约束补偿问题</a>（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。</p><p>回溯法采用<a href="https://zh.wikipedia.org/wiki/试错" target="_blank" rel="noopener">试错</a>的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。回溯法通常用最简单的<a href="https://zh.wikipedia.org/wiki/递归" target="_blank" rel="noopener">递归</a>方法来实现，在反复重复上述的步骤后可能出现两种情况：</p><ul><li>找到一个可能存在的正确的答案</li><li>在尝试了所有可能的分步方法后宣告该问题没有答案</li></ul><a id="more"></a><h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>  不断的试错，直至搜寻到满足条件的解</p><h2 id="八皇后问题"><a href="#八皇后问题" class="headerlink" title="八皇后问题"></a>八皇后问题</h2><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>在8×8格的<a href="https://baike.baidu.com/item/国际象棋/80888" target="_blank" rel="noopener">国际象棋</a>上摆放8个<a href="https://baike.baidu.com/item/皇后/15860305" target="_blank" rel="noopener">皇后</a>，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。</p><p><img src="./nQueen.png" alt=""></p><h4 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h4><p>穷举法需要尝试88=16,777,216种情况。每一列放一个皇后，可以放在第 1 行，第 2 行，……，直到第8行。穷举的时候从所有皇后都放在第1行的方案开始，检验皇后之间是否会相互攻击。方法十分低效，重复做了许多不必要的计算。</p><p>回溯算法用于解决此类问题效率较高。</p><h4 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h4><figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">for</span> col:=<span class="hljs-number">0</span>;col&lt;<span class="hljs-built_in">len</span>(nums);col++&#123;<br>    <span class="hljs-keyword">if</span> check(nums,row,col)&#123;<br>        nums[row][col] = <span class="hljs-string">'Q'</span><br>        solve(res,nums,row+<span class="hljs-number">1</span>)<br>        nums[row][col] = <span class="hljs-string">'.'</span><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure><p>由八皇后问题可以推广至n个皇后的问题，作出决定后回溯减少运算，从而比传统的穷举法更加高效。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;回溯算法以及n皇后问题-nbsp-nbsp-nbsp-nbsp&quot;&gt;&lt;a href=&quot;#回溯算法以及n皇后问题-nbsp-nbsp-nbsp-nbsp&quot; class=&quot;headerlink&quot; title=&quot;回溯算法以及n皇后问题 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&quot;&gt;&lt;/a&gt;回溯算法以及n皇后问题 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%9B%9E%E6%BA%AF%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;回溯&lt;/a&gt;，对于某些计算问题而言，回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于&lt;a href=&quot;https://zh.wikipedia.org/wiki/约束补偿问题&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;约束补偿问题&lt;/a&gt;（在解决约束满足问题时，我们逐步构造更多的候选解，并且在确定某一部分候选解不可能补全成正确解之后放弃继续搜索这个部分候选解本身及其可以拓展出的子候选解，转而测试其他的部分候选解）。&lt;/p&gt;
-&lt;p&gt;回溯法采用&lt;a href=&quot;https://zh.wikipedia.org/wiki/试错&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;试错&lt;/a&gt;的思想，它尝试分步的去解决一个问题。在分步解决问题的过程中，当它通过尝试发现现有的分步答案不能得到有效的正确的解答的时候，它将取消上一步甚至是上几步的计算，再通过其它的可能的分步解答再次尝试寻找问题的答案。回溯法通常用最简单的&lt;a href=&quot;https://zh.wikipedia.org/wiki/递归&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;递归&lt;/a&gt;方法来实现，在反复重复上述的步骤后可能出现两种情况：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;找到一个可能存在的正确的答案&lt;/li&gt;
-&lt;li&gt;在尝试了所有可能的分步方法后宣告该问题没有答案&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="algorithm" scheme="https://zhsssy.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Arch切换lts内核过程</title>
-    <link href="https://zhsssy.github.io/2020/10/10/arch%E5%88%87%E6%8D%A2lts%E5%86%85%E6%A0%B8/"/>
-    <id>https://zhsssy.github.io/2020/10/10/arch%E5%88%87%E6%8D%A2lts%E5%86%85%E6%A0%B8/</id>
-    <published>2020-10-10T02:33:25.000Z</published>
-    <updated>2020-10-10T02:33:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言-nbsp"><a href="#前言-nbsp" class="headerlink" title="前言   &nbsp;"></a>前言   &nbsp;</h3><p>由于更新导致的滚挂之后，想配置一个更加稳定的系统。萌生了切换内核的想法。</p><a id="more"></a><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">sudo pacman -S linux-lts linux-lts-headers<br>sudo grub-mkconfig -o /boot/grub/grub.cfg<br></code></pre></div></td></tr></table></figure><p>执行之后重启之后以lts内核进入系统</p><p>使用lts内核相比普通内核提高了arch的稳定性，降低了滚挂的概率。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言-nbsp&quot;&gt;&lt;a href=&quot;#前言-nbsp&quot; class=&quot;headerlink&quot; title=&quot;前言   &amp;nbsp;&quot;&gt;&lt;/a&gt;前言   &amp;nbsp;&lt;/h3&gt;&lt;p&gt;由于更新导致的滚挂之后，想配置一个更加稳定的系统。萌生了切换内核的想法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Archlinux" scheme="https://zhsssy.github.io/tags/Archlinux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Archlinux-LiveCD修复系统记录</title>
-    <link href="https://zhsssy.github.io/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/"/>
-    <id>https://zhsssy.github.io/2020/10/06/Archlinux-LiveCD%E4%BF%AE%E5%A4%8D%E7%B3%BB%E7%BB%9F%E8%AE%B0%E5%BD%95/</id>
+    <title>LiveCD修复记录</title>
+    <link href="https://zhsssy.github.io/2020/10/06/LiveCD%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/"/>
+    <id>https://zhsssy.github.io/2020/10/06/LiveCD%E4%BF%AE%E5%A4%8D%E8%AE%B0%E5%BD%95/</id>
     <published>2020-10-06T05:12:47.000Z</published>
     <updated>2020-10-06T05:12:47.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="为啥写这个？"><a href="#为啥写这个？" class="headerlink" title="为啥写这个？"></a>为啥写这个？</h2><p>某次更新后重启发现系统内核未加载</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">error: invalid cluster 0<br>error: please load the kernel first<br></code></pre></div></td></tr></table></figure><p><del>重装系统</del></p><p>使用LiveCD修复</p><a id="more"></a><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul><li>进入arch liveCD</li><li>联网</li><li>挂载原系统文件/dev/sda(固态为nvme) 到 (例如/mnt</li><li>挂载efi文件到(/mnt/boot/efi</li></ul><h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">arch-chroot /mnt<br>sudo pacman -Syyuu linux<br></code></pre></div></td></tr></table></figure><h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg<br>grub-install --recheck /dev/sda(efi文件所在)<br></code></pre></div></td></tr></table></figure><p>如果是UEFI引导，这一步如果前面未挂载efi文件则会失败</p><h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>exit退出arch-chroot重启即可正常进入系统</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">error:invalid magic number<br>error:please load kernel first<br></code></pre></div></td></tr></table></figure><p>之后又查阅了不少信息，通过重新生成grub文件的方式解决</p>]]></content>
+    <content type="html"><![CDATA[<p>某次更新后重启发现系统内核未加载</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">error: invalid cluster 0<br>error: please load the kernel first<br></code></pre></div></td></tr></table></figure><p>于是使用LiveCD修复</p><a id="more"></a><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="准备过程"><a href="#准备过程" class="headerlink" title="准备过程"></a>准备过程</h4><ul><li>进入arch liveCD</li><li>联网</li><li>挂载原系统文件mount /dev/nvme0n1p1(/dev/sda) 到 /mnt</li><li>挂载efi文件到(/mnt/boot/efi</li></ul><h4 id="chroot修复"><a href="#chroot修复" class="headerlink" title="chroot修复"></a>chroot修复</h4><p>挂载进入chroot</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">arch-chroot /mnt<br>sudo pacman -Syyuu linux<br></code></pre></div></td></tr></table></figure><h4 id="重新生成grub文件"><a href="#重新生成grub文件" class="headerlink" title="重新生成grub文件"></a>重新生成grub文件</h4><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">grub-mkconfig -o /boot/grub/grub.cfg<br>grub-install --recheck /dev/sda(efi文件所在)<br></code></pre></div></td></tr></table></figure><p>如果是UEFI引导，这一步如果前面未挂载efi文件则会失败</p><h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>exit退出arch-chroot重启即可正常进入系统</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次修复还是踩了不少坑的，在重装了几次内核后又发现报错信息变成了</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">error:invalid magic number<br>error:please load kernel first<br></code></pre></div></td></tr></table></figure><p>之后又查阅了不少信息，通过重新生成grub文件的方式解决</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;为啥写这个？&quot;&gt;&lt;a href=&quot;#为啥写这个？&quot; class=&quot;headerlink&quot; title=&quot;为啥写这个？&quot;&gt;&lt;/a&gt;为啥写这个？&lt;/h2&gt;&lt;p&gt;某次更新后重启发现系统内核未加载&lt;/p&gt;
+      &lt;p&gt;某次更新后重启发现系统内核未加载&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter hljs&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;div class=&quot;hljs code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;error: invalid cluster 0&lt;br&gt;error: please load the kernel first&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;del&gt;重装系统&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;使用LiveCD修复&lt;/p&gt;
+
+&lt;p&gt;于是使用LiveCD修复&lt;/p&gt;
     
     </summary>
     
     
     
       <category term="archlinux" scheme="https://zhsssy.github.io/tags/archlinux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux swap</title>
-    <link href="https://zhsssy.github.io/2020/06/15/swapfile/"/>
-    <id>https://zhsssy.github.io/2020/06/15/swapfile/</id>
-    <published>2020-06-15T04:29:12.000Z</published>
-    <updated>2020-06-15T04:29:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在arch的使用过程中发现swap交换分区挂载失败，查询后发现可以通过交换文件进行挂载起到交换空间的效果。 &nbsp; &nbsp;</p><h3 id="检查交换空间状态"><a href="#检查交换空间状态" class="headerlink" title="检查交换空间状态"></a>检查交换空间状态</h3><p>$ swapon -s</p><p>或 $ free -m</p><h3 id="使用交换文件的方式"><a href="#使用交换文件的方式" class="headerlink" title="使用交换文件的方式"></a>使用交换文件的方式</h3><ul><li>相比磁盘分区，交换文件更方便于随时调整大小或删除。</li></ul><a id="more"></a><h4 id="手动方式"><a href="#手动方式" class="headerlink" title="手动方式"></a>手动方式</h4><p>用root权限，使用fallocate方式创建swapfile，创建512m的文件大小如下：</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">fallocate -l 512M /swapfile<br></code></pre></div></td></tr></table></figure><p>但在实际操作工程中，使用<strong>fallocate</strong>命令使我在后面的启动时遇到错误，</p><p>解决方法： <em>fallocate</em> 命令用在 <a href="https://wiki.archlinux.org/index.php/F2FS" target="_blank" rel="noopener">F2FS</a> 或 <a href="https://wiki.archlinux.org/index.php/XFS" target="_blank" rel="noopener">XFS</a> 文件系统时可能会引起问题。<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1129205#c3" target="_blank" rel="noopener">[1]</a> 代替方式是使用 <em>dd</em> 命令，但是要慢一点:</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">dd <span class="hljs-keyword">if</span>=/dev/zero of=/swapfile bs=1M count=512<br></code></pre></div></td></tr></table></figure><p>为交换文件设置权限：（交换文件全局可读是一个巨大的本地漏洞）</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">chmod 600 /swapfile<br></code></pre></div></td></tr></table></figure><p>创建后格式化</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">mkswap /swapfile<br></code></pre></div></td></tr></table></figure><p>启用文件</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">swapon /swapfile<br></code></pre></div></td></tr></table></figure><p>最后，编辑 <code>/etc/fstab</code>， 在其中添加如下的一行：</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">/swapfile none swap defaults 0 0<br></code></pre></div></td></tr></table></figure><h3 id="如果要修改或删除交换文件"><a href="#如果要修改或删除交换文件" class="headerlink" title="如果要修改或删除交换文件"></a>如果要修改或删除交换文件</h3><h4 id="先停用他"><a href="#先停用他" class="headerlink" title="先停用他"></a>先停用他</h4><p>在root权限下：</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">swapoff -a<br></code></pre></div></td></tr></table></figure><p>删除：</p><figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">rm -rf /swapfile<br></code></pre></div></td></tr></table></figure><p>最后删除/etc/fstab中相关项</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在arch的使用过程中发现swap交换分区挂载失败，查询后发现可以通过交换文件进行挂载起到交换空间的效果。 &amp;nbsp; &amp;nbsp;&lt;/p&gt;
-&lt;h3 id=&quot;检查交换空间状态&quot;&gt;&lt;a href=&quot;#检查交换空间状态&quot; class=&quot;headerlink&quot; title=&quot;检查交换空间状态&quot;&gt;&lt;/a&gt;检查交换空间状态&lt;/h3&gt;&lt;p&gt;$ swapon -s&lt;/p&gt;
-&lt;p&gt;或 $ free -m&lt;/p&gt;
-&lt;h3 id=&quot;使用交换文件的方式&quot;&gt;&lt;a href=&quot;#使用交换文件的方式&quot; class=&quot;headerlink&quot; title=&quot;使用交换文件的方式&quot;&gt;&lt;/a&gt;使用交换文件的方式&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;相比磁盘分区，交换文件更方便于随时调整大小或删除。&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="archlinux" scheme="https://zhsssy.github.io/tags/archlinux/"/>
-    
-      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
     
   </entry>
   
@@ -187,53 +89,6 @@
       <category term="golang" scheme="https://zhsssy.github.io/tags/golang/"/>
     
       <category term="go-micro" scheme="https://zhsssy.github.io/tags/go-micro/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux中安装.tar包</title>
-    <link href="https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/"/>
-    <id>https://zhsssy.github.io/2020/05/31/tar%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</id>
-    <published>2020-05-31T02:12:44.000Z</published>
-    <updated>2020-05-31T02:12:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>打开一个SHELL，即终端<br>用cd 命令进入源代码压缩包所在的目录</li><li>根据压缩包类型解压缩文件(*代表压缩包名称)<br>tar -xvzf .tar.gz || tar -jxvf .tar.bz(或bz2)</li><li>用CD命令进入解压缩后的目录</li></ul><a id="more"></a><ul><li>输入编译文件命令：./configure（有的压缩包已经编译过，这一步可以省去）<br>./configure –prefix=/opt 表示安装到/opt目录 。</li><li>命令: make</li><li>再是安装文件命令：make install</li><li>执行“make clean”删除安装时产生的临时文件</li><li>安装完毕</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;打开一个SHELL，即终端&lt;br&gt;用cd 命令进入源代码压缩包所在的目录&lt;/li&gt;
-&lt;li&gt;根据压缩包类型解压缩文件(*代表压缩包名称)&lt;br&gt;tar -xvzf .tar.gz || tar -jxvf .tar.bz(或bz2)&lt;/li&gt;
-&lt;li&gt;用CD命令进入解压缩后的目录&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="linux" scheme="https://zhsssy.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pacman常用命令</title>
-    <link href="https://zhsssy.github.io/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>https://zhsssy.github.io/2020/05/31/pacman%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
-    <published>2020-05-31T01:51:56.000Z</published>
-    <updated>2020-05-31T01:51:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h2><p>在 Archlinux 中，使用一条命令即可对整个系统进行更新：<br>pacman -Syu<br>如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su</p><h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p>➔ pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，<br>只需以空格分隔包名即可。<br>➔ pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。<br>➔ pacman -Sv 包名：在显示一些操作信息后执行安装。<br>➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。<br>➔ pacman -U <a href="http://www.example.com/repo/example.pkg.tar.xz" target="_blank" rel="noopener">http://www.example.com/repo/example.pkg.tar.xz</a> 安装一个远程包（不在 pacman 配置的源里面）</p><a id="more"></a>显示在这里<!--more--><h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><p>➔ pacman -R 包名：该命令将只删除包，保留其全部已经安装的依赖关系<br>➔ pacman -Rs 包名：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系<br>➔ pacman -Rsc 包名：在删除包的同时，删除所有依赖这个软件包的程序<br>➔ pacman -Rd 包名：在删除包时不检查依赖。</p><h2 id="搜索包"><a href="#搜索包" class="headerlink" title="搜索包"></a>搜索包</h2><p>➔ pacman -Ss 关键字：在仓库中搜索含关键字的包。<br>➔ pacman -Qs 关键字： 搜索已安装的包。<br>➔ pacman -Qi 包名：查看有关包的详尽信息。<br>➔ pacman -Ql 包名：列出该包的文件。</p><h2 id="其他用法"><a href="#其他用法" class="headerlink" title="其他用法"></a>其他用法</h2><p>➔ pacman -Sw 包名：只下载包，不安装。<br>➔ pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。<br>➔ pacman -Scc：清理所有的缓存文件。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;更新系统&quot;&gt;&lt;a href=&quot;#更新系统&quot; class=&quot;headerlink&quot; title=&quot;更新系统&quot;&gt;&lt;/a&gt;更新系统&lt;/h2&gt;&lt;p&gt;在 Archlinux 中，使用一条命令即可对整个系统进行更新：&lt;br&gt;pacman -Syu&lt;br&gt;如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su&lt;/p&gt;
-&lt;h2 id=&quot;安装包&quot;&gt;&lt;a href=&quot;#安装包&quot; class=&quot;headerlink&quot; title=&quot;安装包&quot;&gt;&lt;/a&gt;安装包&lt;/h2&gt;&lt;p&gt;➔ pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，&lt;br&gt;只需以空格分隔包名即可。&lt;br&gt;➔ pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。&lt;br&gt;➔ pacman -Sv 包名：在显示一些操作信息后执行安装。&lt;br&gt;➔ pacman -U：安装本地包，其扩展名为 pkg.tar.gz。&lt;br&gt;➔ pacman -U &lt;a href=&quot;http://www.example.com/repo/example.pkg.tar.xz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.example.com/repo/example.pkg.tar.xz&lt;/a&gt; 安装一个远程包（不在 pacman 配置的源里面）&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="archlinux" scheme="https://zhsssy.github.io/tags/archlinux/"/>
     
   </entry>
   
