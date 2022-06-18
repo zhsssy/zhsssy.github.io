@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <title>Go interface - zhsssy的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"zhsssy.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"script":"https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js","onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="zhsssy的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>zhsssy的技术博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/book">
+                <i class="iconfont icon-category-fill"></i>
+                书单
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Go interface">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-03-19 14:00" pubdate>
+        2020年3月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Go interface</h1>
+            
+            <div class="markdown-body">
+              <h2 id="接口-nbsp-nbsp-nbsp"><a href="#接口-nbsp-nbsp-nbsp" class="headerlink" title="接口    &nbsp; &nbsp; &nbsp;"></a>接口    &nbsp; &nbsp; &nbsp;</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p><strong>interface 是一种类型</strong>，从它的定义可以看出来用了 type 关键字，准确的说 interface 是一种<strong>具有一组方法的类型</strong>。</p>
+<p><strong>如果一个类型实现了一个 interface 中所有方法，我们说类型实现了该 interface</strong>。go 没有显式的关键字用来实现 interface，只需要实现 interface 包含的方法即可。</p>
+<a id="more"></a>
+
+<h4 id="empty-interface"><a href="#empty-interface" class="headerlink" title="empty interface"></a>empty interface</h4><p>所有类型都实现了empty interface，因为任何一种类型至少实现了 0 个方法。空的 interface 没有方法，所以可以认为所有的类型都实现了 <code>interface{}</code>。如果定义一个函数参数是 <code>interface{}</code> 类型，这个函数应该可以接受任何类型作为它的参数。</p>
+<h4 id="duck-typing"><a href="#duck-typing" class="headerlink" title="duck typing"></a><a href="https://zh.wikipedia.org/wiki/Duck_typing" target="_blank" rel="noopener">duck typing</a></h4><blockquote>
+<p>​    *”When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.”*</p>
+</blockquote>
+<p>一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由”当前方法和属性的集合”决定 。</p>
+<p>Go语言通过隐式接口机制实现了鸭子面向对象模型。</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span><br><br><span class="hljs-keyword">type</span> Duck <span class="hljs-keyword">interface</span>&#123;<br>	Swim()<br>	Walk()<br>	Quacks()<br>&#125;<br><span class="hljs-keyword">type</span> Bird <span class="hljs-keyword">struct</span> &#123;&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Bird)</span> <span class="hljs-title">Swim</span><span class="hljs-params">()</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">"swim"</span>)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Bird)</span> <span class="hljs-title">Walk</span><span class="hljs-params">()</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">"walk"</span>)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *Bird)</span> <span class="hljs-title">Quacks</span><span class="hljs-params">()</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">"quacks"</span>)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-keyword">var</span> duck Duck<br>	b := &amp;Bird&#123;&#125;<br>	d = b<br>	duck.Swim()		<br>	duck.Walk()		<br>	duck.Quacks()	<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>运行后结果为</p>
+<figure class="highlight armasm"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs armasm"><span class="hljs-keyword">swim</span><br><span class="hljs-keyword">walk</span><br><span class="hljs-keyword">quacks</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="通过接口实现多态"><a href="#通过接口实现多态" class="headerlink" title="通过接口实现多态"></a>通过接口实现多态</h4><figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span><br><br><span class="hljs-keyword">type</span> Programmer <span class="hljs-keyword">interface</span>&#123;<br>	Use()<br>	Learn()<br>&#125;<br><span class="hljs-keyword">type</span> Gopher <span class="hljs-keyword">struct</span>&#123;&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Gopher)</span> <span class="hljs-title">Use</span><span class="hljs-params">()</span></span>&#123;<br>	fmt.Println(<span class="hljs-string">"gopher use go"</span>)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Gopher)</span> <span class="hljs-title">Learn</span><span class="hljs-params">()</span></span>&#123;<br>	fmt.Println(<span class="hljs-string">"gopher learn go"</span>)<br>&#125;<br><br><span class="hljs-keyword">type</span> Pythonista <span class="hljs-keyword">struct</span>&#123;&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Pythonista)</span> <span class="hljs-title">Use</span><span class="hljs-params">()</span></span>&#123;<br>	fmt.Println(<span class="hljs-string">"pythonista use python"</span>)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Pythonista)</span> <span class="hljs-title">Learn</span><span class="hljs-params">()</span></span>&#123;<br>	fmt.Println(<span class="hljs-string">"pythonista learn python"</span>)<br>&#125;<br><span class="hljs-keyword">type</span> Human <span class="hljs-keyword">struct</span> &#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(h *Human)</span><span class="hljs-title">Program</span><span class="hljs-params">(p Programmer)</span></span>&#123;<br>	p.Use()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Factory</span><span class="hljs-params">(name <span class="hljs-keyword">string</span>)</span> <span class="hljs-title">Programmer</span></span>&#123;<br>	<span class="hljs-keyword">switch</span> name &#123;<br>	<span class="hljs-keyword">case</span> <span class="hljs-string">"gopher"</span>:<br>		<span class="hljs-keyword">return</span> &amp;Gopher&#123;&#125;<br>	<span class="hljs-keyword">case</span> <span class="hljs-string">"pythonista"</span>:<br>		<span class="hljs-keyword">return</span> &amp;Pythonista&#123;&#125;<br>	<span class="hljs-keyword">default</span>:<br>		<span class="hljs-built_in">panic</span>(<span class="hljs-string">"err"</span>)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	human := &amp;Human&#123;&#125;<br>	p1  := Factory(<span class="hljs-string">"gopher"</span>)<br>	p1.Learn()<br>	human.Program(p1)<br><br>	p2  := Factory(<span class="hljs-string">"pythonista"</span>)<br>	p2.Learn()<br>	human.Program(p2)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>gopher和pythonista两个对象并没有显式声明实现了接口programmer。实际上在编译器调用Program函数时，将gopher和pythonista对象转换成了Programmer类型。</p>
+<p>Go 作为一种静态语言，通过接口实现了鸭子类型，实际上是 Go 的编译器在其中作了隐匿的转换工作。</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><h4 id="eface"><a href="#eface" class="headerlink" title="eface"></a>eface</h4><figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> eface <span class="hljs-keyword">struct</span> &#123;<br>	_type *_type   <span class="hljs-comment">//_type是对一种具体类型的描述,例如int,string</span><br>	data  unsafe.Pointer   <span class="hljs-comment">//指向真实数据的指针</span><br>&#125;<br><br><span class="hljs-comment">// Needs to be in sync with ../cmd/link/internal/ld/decodesym.go:/^func.commonsize,</span><br><span class="hljs-comment">// ../cmd/compile/internal/gc/reflect.go:/^func.dcommontype and</span><br><span class="hljs-comment">// ../reflect/type.go:/^type.rtype.</span><br><span class="hljs-keyword">type</span> _type <span class="hljs-keyword">struct</span> &#123;<br>    <span class="hljs-comment">//类型大小</span><br>	size       <span class="hljs-keyword">uintptr</span> <span class="hljs-comment">//type size</span><br>	ptrdata    <span class="hljs-keyword">uintptr</span> <span class="hljs-comment">// size of memory prefix holding all pointers</span><br>    <span class="hljs-comment">//hash值</span><br>	hash       <span class="hljs-keyword">uint32</span>  <span class="hljs-comment">//hash of type;avoids computation in hash table</span><br>	tflag      tflag	<span class="hljs-comment">//// 类型的 flag，和反射相关</span><br>    <span class="hljs-comment">//内存对齐相关</span><br>	align      <span class="hljs-keyword">uint8</span><br>	fieldalign <span class="hljs-keyword">uint8</span><br>    kind       <span class="hljs-keyword">uint8</span> <span class="hljs-comment">// type mask bool,slice,struct...</span><br>	alg        *typeAlg<br>    <span class="hljs-comment">//垃圾回收相关</span><br>	<span class="hljs-comment">// gcdata stores the GC type data for the garbage collector.</span><br>	<span class="hljs-comment">// If the KindGCProg bit is set in kind, gcdata is a GC program.</span><br>	<span class="hljs-comment">// Otherwise it is a ptrmask bitmap. See mbitmap.go for details.</span><br>	gcdata    *<span class="hljs-keyword">byte</span><br>	str       nameOff <span class="hljs-comment">//string form</span><br>	ptrToThis typeOff <span class="hljs-comment">// type for pointer to this type, may be zero</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="iface"><a href="#iface" class="headerlink" title="iface"></a>iface</h4><figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> iface <span class="hljs-keyword">struct</span> &#123;<br>	tab  *itab   <span class="hljs-comment">//itab,类型信息</span><br>	data unsafe.Pointer<br>&#125;<br><br><span class="hljs-comment">// layout of Itab known to compilers</span><br><span class="hljs-comment">// allocated in non-garbage-collected memory</span><br><span class="hljs-comment">// Needs to be in sync with</span><br><span class="hljs-comment">// ../cmd/compile/internal/gc/reflect.go:/^func.dumptypestructs.</span><br><span class="hljs-keyword">type</span> itab <span class="hljs-keyword">struct</span> &#123;<br>	inter  *interfacetype <span class="hljs-comment">//interface type description   package path method</span><br>	_type  *_type         <span class="hljs-comment">//origin type</span><br>	link   *itab  <span class="hljs-comment">//hash表头指针</span><br>	hash   <span class="hljs-keyword">uint32</span> <span class="hljs-comment">// copy of _type.hash. Used for type switches.</span><br>	bad    <span class="hljs-keyword">bool</span>   <span class="hljs-comment">// type does not implement interface</span><br>	inhash <span class="hljs-keyword">bool</span>   <span class="hljs-comment">// has this itab been added to hash?</span><br>	unused [<span class="hljs-number">2</span>]<span class="hljs-keyword">byte</span><br>	fun    [<span class="hljs-number">1</span>]<span class="hljs-keyword">uintptr</span> <span class="hljs-comment">//method具体实现</span><br>&#125;<br><span class="hljs-comment">//包装了 _type 类型，_type 实际上是描述 Go 语言中各种数据类型的结构体。我们注意到，这里还包含一个 mhdr 字段，表示接口所定义的函数列表， pkgpath 记录定义了接口的包名</span><br><span class="hljs-keyword">type</span> interfacetype <span class="hljs-keyword">struct</span> &#123;<br>	typ     _type		<br>	pkgpath name<br>	mhdr    []imethod<br>&#125;<br><br><span class="hljs-keyword">type</span> imethod <span class="hljs-keyword">struct</span> &#123;<br>	name nameOff<br>	ityp typeOff<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="接口的动态类型和动态值"><a href="#接口的动态类型和动态值" class="headerlink" title="接口的动态类型和动态值"></a>接口的动态类型和动态值</h4><p>例子</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span><br><br><span class="hljs-keyword">type</span> Coder <span class="hljs-keyword">interface</span> &#123;<br>    code()<br>&#125;<br><br><span class="hljs-keyword">type</span> Gopher <span class="hljs-keyword">struct</span> &#123;<br>    name <span class="hljs-keyword">string</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g Gopher)</span> <span class="hljs-title">code</span><span class="hljs-params">()</span></span> &#123;<br>    fmt.Printf(<span class="hljs-string">"%s is coding\n"</span>, g.name)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> c Coder<br>    fmt.Println(c == <span class="hljs-literal">nil</span>)<br>    fmt.Printf(<span class="hljs-string">"c: %T, %v\n"</span>, c, c)<br><br>    <span class="hljs-keyword">var</span> g *Gopher<br>    fmt.Println(g == <span class="hljs-literal">nil</span>)<br><br>    c = g<br>    fmt.Println(c == <span class="hljs-literal">nil</span>)<br>    fmt.Printf(<span class="hljs-string">"c: %T, %v\n"</span>, c, c)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-literal">true</span><br>c: &lt;<span class="hljs-literal">nil</span>&gt;, &lt;<span class="hljs-literal">nil</span>&gt;<br><span class="hljs-literal">true</span><br><span class="hljs-literal">false</span><br>c: *main.Gopher, &lt;<span class="hljs-literal">nil</span>&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>在一开始动态类型和值都为nil，赋值后类型为*main.Gopher</p>
+<h4 id="空接口"><a href="#空接口" class="headerlink" title="空接口"></a>空接口</h4><p>nil 接口值既不保存值也不保存具体类型</p>
+<p>只有当值和类型都为nil时，接口为空接口</p>
+<p>例子</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">"fmt"</span><br>	<span class="hljs-string">"reflect"</span><br>)<br><br><span class="hljs-keyword">type</span> TestnilStruct <span class="hljs-keyword">struct</span>&#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">testnil1</span><span class="hljs-params">(a, b <span class="hljs-keyword">interface</span>&#123;&#125;)</span> <span class="hljs-title">bool</span></span> &#123;<br>	<span class="hljs-keyword">return</span> a == b<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">testnil2</span><span class="hljs-params">(a *TestnilStruct, b <span class="hljs-keyword">interface</span>&#123;&#125;)</span> <span class="hljs-title">bool</span></span> &#123;<br>	<span class="hljs-keyword">return</span> a == b<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">testnil3</span><span class="hljs-params">(a <span class="hljs-keyword">interface</span>&#123;&#125;)</span> <span class="hljs-title">bool</span></span> &#123;<br>	<span class="hljs-keyword">return</span> a == <span class="hljs-literal">nil</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">testnil4</span><span class="hljs-params">(a *TestnilStruct)</span> <span class="hljs-title">bool</span></span> &#123;<br>	<span class="hljs-keyword">return</span> a == <span class="hljs-literal">nil</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">testnil5</span><span class="hljs-params">(a <span class="hljs-keyword">interface</span>&#123;&#125;)</span> <span class="hljs-title">bool</span></span> &#123;<br>	v := reflect.ValueOf(a)<br>	<span class="hljs-keyword">return</span> v.IsNil() || !v.IsValid()		<span class="hljs-comment">//判断返回值是否为nil，返回值是否有效</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	<span class="hljs-keyword">var</span> a *TestnilStruct<br>	fmt.Println(testnil1(a, <span class="hljs-literal">nil</span>))<br>	fmt.Println(testnil2(a, <span class="hljs-literal">nil</span>))	<br>	fmt.Println(testnil3(a))		<br>	fmt.Println(testnil4(a))		<br>	fmt.Println(testnil5(a))		<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-literal">false</span><br><span class="hljs-literal">false</span><br><span class="hljs-literal">false</span><br><span class="hljs-literal">true</span><br><span class="hljs-literal">true</span><br></code></pre></div></td></tr></table></figure>
+
+<p>一个interface{}类型的变量包含了2个指针，一个指针指向值的类型，另外一个指针指向实际的值 对一个interface{}类型的nil变量来说，它的两个指针都是空。a传入后，指向的类型的指针不为空了，有类型的存在， 所以结果为false。 interface类型比较，两个指针都相等，才能相等。</p>
+<h3 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h3><h4 id="类型转换和类型断言的区别"><a href="#类型转换和类型断言的区别" class="headerlink" title="类型转换和类型断言的区别"></a>类型转换和类型断言的区别</h4><p>类型转换前和后两者类型需要兼容</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	<span class="hljs-keyword">var</span> i <span class="hljs-keyword">int</span> = <span class="hljs-number">9</span><br><br>	<span class="hljs-keyword">var</span> f <span class="hljs-keyword">float64</span><br>	f = <span class="hljs-keyword">float64</span>(i)<br>	fmt.Printf(<span class="hljs-string">"%T, %v\n"</span>, f, f)<br><br>	f = <span class="hljs-number">10.8</span><br>	a := <span class="hljs-keyword">int</span>(f)<br>	fmt.Printf(<span class="hljs-string">"%T, %v\n"</span>, a, a)<br><br>	s := []<span class="hljs-keyword">int</span>(i)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>int和float64之间的转换成功，但是在int转化为[]int时会报错</p>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">Cannot convert expression of<span class="hljs-built_in"> type </span><span class="hljs-string">'int'</span> <span class="hljs-keyword">to</span><span class="hljs-built_in"> type </span><span class="hljs-string">'[]int</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="当函数的形参为interface-时，在函数中可以通过断言来判断interface的真实类型"><a href="#当函数的形参为interface-时，在函数中可以通过断言来判断interface的真实类型" class="headerlink" title="当函数的形参为interface{}时，在函数中可以通过断言来判断interface的真实类型"></a>当函数的形参为interface{}时，在函数中可以通过断言来判断interface的真实类型</h4><p>安全类型断言</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go">&lt;目标类型值&gt;,&lt;布尔参数&gt; := &lt;表达式&gt;.(目标类型)<br></code></pre></div></td></tr></table></figure>
+
+<p>非安全类型断言</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go">&lt;目标类型值&gt; := &lt;表达式&gt;.(目标类型)<br></code></pre></div></td></tr></table></figure>
+
+<p> 例子</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span><br><br><span class="hljs-keyword">type</span> Student <span class="hljs-keyword">struct</span> &#123;<br>    Name <span class="hljs-keyword">string</span><br>    Age <span class="hljs-keyword">int</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> i <span class="hljs-keyword">interface</span>&#123;&#125; = <span class="hljs-built_in">new</span>(Student)<br>    s := i.(Student)<br><br>    fmt.Println(s)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>此时非安全断言会产生panic</p>
+<p>此时的i类型为 *Student 而非 Student</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs hljs hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> i <span class="hljs-keyword">interface</span>&#123;&#125; = <span class="hljs-built_in">new</span>(Student)<br>    s, ok := i.(Student)<br>    <span class="hljs-keyword">if</span> ok &#123;<br>        fmt.Println(s)<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>采用安全类型断言即使失败也不会panic</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/63649977" target="_blank" rel="noopener">Go语言之关于 interface 的10个问题</a></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/golang/">golang</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/06/go-micro(1)/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">go-micro(1)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+    <div class="footer-content">
+        
+<span style="font-family:arial;">Copyright &copy; </span>  2020</span> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>fluid</span></a> 
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+        
+
+            
+
+<p id="hitokoto">:D 获取中...</p>
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+<!--End-->
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(function (res){
+      return res.json();
+    })
+    .then(function (data) {
+      var hitokoto = document.getElementById('hitokoto');
+      hitokoto.innerText = data.hitokoto;
+    })
+    .catch(function (err) {
+      console.error(err);
+    })
+</script>
+</body>
+</html>
